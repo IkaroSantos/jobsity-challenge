@@ -1,0 +1,38 @@
+<div class="container">
+    <h2>Task Manager</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+        <div class="input-field">
+            <input id="task-title" type="text" formControlName="title">
+            <label for="task-title">New Task</label>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" [disabled]="taskForm.invalid">Add Task</button>
+    </form>
+
+    <ul class="collection">
+        <li class="collection-item" *ngFor="let task of tasks$ | async">
+            <div>
+                <label>
+                    <input type="checkbox" [checked]="task.completed" (change)="toggleTaskStatus(task)" />
+                    <span [class.completed]="task.completed">{{ task.title }}</span>
+                </label>
+                <a class="pointer secondary-content section" (click)="editTask(task)">
+                    Edit
+                </a>
+                <a class="pointer secondary-content section" (click)="deleteTask(task)">
+                    Delete
+                </a>
+            </div>
+        </li>
+    </ul>
+
+    <div *ngIf="editingTask">
+        <h3>Edit Task</h3>
+        <form [formGroup]="editTaskForm" (ngSubmit)="saveTask()">
+            <div class="input-field">
+                <input id="edit-task-title" type="text" formControlName="title">
+                <label for="edit-task-title" class="active">Edit Task</label>
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" [disabled]="editTaskForm.invalid">Save</button>
+        </form>
+    </div>
+</div>

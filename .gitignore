@@ -1,0 +1,22 @@
+# Node.js related
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Angular specific
+/dist
+/e2e/*.log
+*.js
+*.js.map
+*.d.ts
+
+# Environment variables
+.env
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
