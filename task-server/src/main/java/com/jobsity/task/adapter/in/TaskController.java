@@ -43,7 +43,7 @@ public class TaskController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable String id) {
-        if (taskUseCase.getTaskById(id) == null) {
+        if (taskUseCase.getTaskById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
         taskUseCase.deleteTask(id);
